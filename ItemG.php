@@ -63,7 +63,7 @@ namespace ItemG;
 
          $username = $player->getName(); //タッチしたPlayerName
 
-         $bitem = $ev->getItem()->getID(); //タッチしたItemID
+         $bitem = $ev->getBlock()->getID(); //タッチしたItemID
 
         /* ツールガチャ品揃え*/
 
@@ -134,7 +134,69 @@ namespace ItemG;
                        $this->EconomyAPI->setMoney($player, $amoney);
 
 
-                        switch($rand){
+                        
+
+            }
+
+       }
+
+                if($bitem == $this->config->get("触るブロックID2")){   
+
+                         $rand = rand(1,9);
+
+                         $nedan = $this->config->get("値段2");    
+
+                        
+
+                         if($nowmoney < $nedan){
+
+                                $player->sendMessage("§e[ItemG] お金が足りません"); 
+
+                         }else{
+
+                               $amoney = $nowmoney - $nedan;
+
+                               $this->EconomyAPI->setMoney($player, $amoney);
+
+                               $this->addItem($player, $rand);
+ 
+                  }
+             }
+
+
+                        
+                       if($bitem == $this->config->get("触るブロックID3")){  
+
+                    
+                                 $rand = rand(1,6);
+
+                                 $nedan = $this->config->get("値段3");    
+
+                        
+
+                                 if($nowmoney < $nedan){
+
+                                       $player->sendMessage("§e[ItemG] お金が足りません"); 
+
+                                  }else{
+
+                                   $amoney = $nowmoney - $nedan;
+
+                                   $this->EconomyAPI->setMoney($player, $amoney);
+ 
+									$this->addItem($player, $rand);
+
+                                   
+           
+                     }
+            
+            }
+
+   }
+  
+  public function addItem($player, $rand){
+  
+  switch($rand){
 
 
                                case 1:
@@ -243,136 +305,12 @@ namespace ItemG;
                                        break;
 
                     }
-
-            }
-
-       }
-
-                if($bitem == $this->config->get("触るブロックID2")){   
-
-                         $rand = rand(1,9);
-
-                         $nedan = $this->config->get("値段2");    
-
-                        
-
-                         if($nowmoney < $nedan){
-
-                                $player->sendMessage("§e[ItemG] お金が足りません"); 
-
-                         }else{
-
-                               $amoney = $nowmoney - $nedan;
-
-                               $this->EconomyAPI->setMoney($player, $amoney);
-
-                               switch($rand){
-
-                                             case 1:
-                                                    $player->getInventory()->addItem($item24);
-                                                    $player->sendMessage("§a[ItemG] ダイヤモンドがあたりました!!!!!!!!");
-                                                    $this->getServer()->broadcastMessage("§b[ItemG] ".$username."さんがダイヤモンドを当てました!");
-
-                                                   break;
-
-                                             case 2:
-                                                    $player->getInventory()->addItem($item25);
-                                                    $player->sendMessage("§b[ItemG] 鉄を当てました!");
-                                                    break;
-
-                                             case 3:
-                                                    $player->getInventory()->addItem($item26);
-                                                    $player->sendMessage("§b[ItemG] 金をあてました");
-                                                    break;
- 
-                                             case 4:
-                                                    $player->getInventory()->addItem($item27);
-                                                    $player->sendMessage("§b[ItemG] エメラルドをあてました");
-                                                    break;
-
-                                             case 5:
-                                                    $player->getInventory()->addItem($item28);
-                                                    $player->sendMessage("§b[ItemG] レッドストーンがあたりました！");
-                                                    break;
-       
-                                             case 6:
-                                                    $player->getInventory()->addItem($item29);
-                                                    $player->sendMessage("§b[ItemG] ラピスラズリがあたりました！");
-                                                    break;
-
-                                             default:
-
-                                                      $player->getInventory()->addItem($item23);
-                                                      $player->sendMessage("§b[ItemG] 石炭があたりました！");
-                      
-
-                             }
- 
-                  }
-             }
-
-
-                        
-                       if($bitem == $this->config->get("触るブロックID3")){  
-
-                    
-                                 $rand = rand(1,6);
-
-                                 $nedan = $this->config->get("値段3");    
-
-                        
-
-                                 if($nowmoney < $nedan){
-
-                                       $player->sendMessage("§e[ItemG] お金が足りません"); 
-
-                                  }else{
-
-                                   $amoney = $nowmoney - $nedan;
-
-                                   $this->EconomyAPI->setMoney($player, $amoney);
- 
-
-
-                                   switch($rand){
-
-                                                 case 1:
-                                                        $player->getInventory()->addItem($item30);
-                                                        $player->sendMessage("§b[ItemG] ネザーラックがあたりました！");
-                                                        break;
-
-                                                 case 2:
-                                                        $player->getInventory()->addItem($item31);
-                                                        $player->sendMessage("§b[ItemG] グロウストーンがあたりました！");
-                                                        break;
-
-                                                 case 3:
-                                                        $player->getInventory()->addItem($item32);
-                                                        $player->sendMessage("§b[ItemG] ソウルサンドがあたりました！");
-                                                        break;
-
-                                                 case 4:
-                                                        $player->getInventory()->addItem($item33);
-                                                        $player->sendMessage("§b[ItemG] ネザーレンガがあたりました！");
-                                                        break;
-
-                                                 case 5:
-                                                        $player->getInventory()->addItem($item34);
-                                                        $player->sendMessage("§b[ItemG] ネザークォーツがあたりました！");
-                                                        break;
-
-                                                 case 6:
-                                                        $player->getInventory()->addItem($item35);
-                                                        $player->sendMessage("§b[ItemG] 暗黒フェンスが当たりました!");
-                                                        break;
-
-                               }
-           
-                     }
-            
-            }
-
-   }
+  
+  
+  
+  }
+  
+  
   
 
 }
